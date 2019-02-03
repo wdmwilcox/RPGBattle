@@ -32,7 +32,7 @@ class Enemy(Character):
 						}
 
 
-class Gnome(Enemy):  # this is a not a diss on gnomes
+class Gnome(Enemy):  # This class does not condone racism towards gnomes
 
 	def __init__(self, level):
 		self.name = 'Gnome'
