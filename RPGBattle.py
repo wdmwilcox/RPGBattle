@@ -2,7 +2,7 @@
 import random
 import time
 
-# globals
+# globals  We don't have any of these yet
 
 # classes
 
