@@ -32,8 +32,8 @@ class Enemy(Character):
 						}
 
 
-class Gnome(Enemy):  # this is a not a diss on gnomes
-
+class Gnome(Enemy):  # This class is totally racist
+	
 	def __init__(self, level):
 		self.name = 'Gnome'
 		self.dialogue = {'hit' : ['Ouch',
