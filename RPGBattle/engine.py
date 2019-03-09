@@ -2,7 +2,7 @@ from character import Character, Player, Enemy, Gnome
 from battle import Battle
 
 class Engine(object):
-	
+
 	def __init__(self):
 		pass
 
@@ -18,25 +18,25 @@ class Engine(object):
 		print(f'You wake up with amnesia.  What is your name?')
 		player_name = input(' > ')
 		print(f'''Ah yes, {player_name}.  You feel a bruise on your head and see a simple wooden club at your feet.
-A quick check of your pockets reveal that your gold is missing.  You have been robbed!  You aren't going to take this
+A quick check of your pockets reveals that your gold is missing.  You have been robbed!  You aren't going to take this
 lying down; you reach down to grab the club and find some monster footprints leading away.  It's time to get your money back!''')
 		player = Player(player_name)
-		return player			
+		return player
 
 	def play_battle(self):
-		battle = Battle(player_level)
+		battle = Battle(self.player.level)
 		battle.generate_enemies()
 		battle.display_information()
 		while battle.battle_over == False:
 			battle.display_enemy_dialogue()
-			player_choice = battle.get_choices()
-			for action in player.actions():
-				if player_choice == player.actions[action]:
-					player.actions[action].do_action(battle)
+			player_choice = self.player.get_choice()
+			for action in self.player.actions.keys():
+				if player_choice == action:
+					self.player.actions[action]()
 				else:
-					print("You can't do that right now.")
-				
-				
+					print(f"You can't do {action} right now.")
+
+
 
 	def play(self):
 		print('Welcome to RPG Battle!')
@@ -46,7 +46,7 @@ lying down; you reach down to grab the club and find some monster footprints lea
 			self.get_help()
 		elif play_input.lower() == 'start':
 			self.player = self.make_player()
-			print(f'Hello, {self.player.name}.  This feature is not implemented.')
+			self.play_battle()
 		elif play_input.lower() == 'quit':
 			self.quit_game()
 		else:
