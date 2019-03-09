@@ -1,35 +1,44 @@
 import time
 
 class Character(object):
-	
+
 	def __init__(self):
 		self.stats = {'health' : 100.0,
 		'attack power' : 1.0,
 		'defense' : 1.0,
 		}
 		self.actions = {}
-	
-	
+		self.level = 1
+
+
 class Player(Character):
-		
+
 	def __init__(self, name):
+		super().__init__()
 		self.name = name
 		self.actions = {'attack': self.attack,
 					'flee': self.flee,
 					'taunt': self.taunt,
-					'apocalype': self.apocalype,
+					'apocalypse': self.apocalypse,
 					}
-					
+
+	def get_choice(self):
+		print('What shall you do?  ')
+		for action in self.actions.keys():
+			print(action)
+		choice = input(' > ')
+		return choice
+
 	def flee(self):
 		pass
-		
+
 	def taunt(self):
 		pass
-		
+
 	def attack(self):
 		pass
-		
-	def apocalype(self):
+
+	def apocalypse(self):
 		print("You just ended the world.")
 		time.sleep(1)
 		print("Well, that was pointless.")
@@ -37,7 +46,7 @@ class Player(Character):
 		print("Enjoy your solitary existence in the void, I guess...")
 		time.sleep(10)
 		exit(0)
-					
+
 
 class Enemy(Character):
 
@@ -48,16 +57,16 @@ class Enemy(Character):
 						 'defeat' : [],
 						 'victory' : [],
 						}
-						
+
 	def play_turn(self):
 		pass
-	
+
 	def speak(self):
 		pass
-		
+
 	def die(self):
 		pass
-		
+
 
 class Gnome(Enemy):  # This class does not condone racism towards gnomes
 
@@ -73,19 +82,15 @@ class Gnome(Enemy):  # This class does not condone racism towards gnomes
 								   'Fresh out the garden!',
 								   ],
 						 }
-						 
+
 	def attack(self):
 		pass
-		
+
 	def flee(self):
 		pass
-		
+
 	def speak(self):
 		pass
-		
+
 	def die(self):
 		pass
-		
-		
-
-		
