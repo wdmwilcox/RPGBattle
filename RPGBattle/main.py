@@ -5,5 +5,5 @@ from battle import Battle
 def main():
 	game = Engine()
 	game.play()
-	
+
 main()
