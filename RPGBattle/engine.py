@@ -1,5 +1,6 @@
-from character import Character, Player, Enemy, Gnome
+from character import Player
 from battle import Battle
+from time import sleep
 
 class Engine(object):
 
@@ -30,13 +31,14 @@ lying down; you reach down to grab the club and find some monster footprints lea
 		while battle.battle_over == False:
 			battle.display_enemy_dialogue()
 			player_choice = self.player.get_choice()
-			for action in self.player.actions.keys():
-				if player_choice == action:
-					self.player.actions[action]()
-				else:
-					print(f"You can't do {action} right now.")
+			self.player.actions[player_choice](battle)
+			battle.get_enemy_turn(self.player)
+			battle.battle_over = battle.check_battle_over()
+		print(battle.calculate_outcome())
 
-
+	def adventure(self):
+		print("You had an adventure.")
+		return True
 
 	def play(self):
 		print('Welcome to RPG Battle!')
@@ -46,9 +48,12 @@ lying down; you reach down to grab the club and find some monster footprints lea
 			self.get_help()
 		elif play_input.lower() == 'start':
 			self.player = self.make_player()
-			self.play_battle()
+			keep_playing = True
+			while keep_playing:
+				self.play_battle()
+				keep_playing = self.adventure()
 		elif play_input.lower() == 'quit':
 			self.quit_game()
 		else:
-			print(f'The feature {help_or_start} is not implemented.')
+			print(f'The feature {play_input} is not implemented.')
 			self.play()

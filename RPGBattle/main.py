@@ -6,4 +6,7 @@ def main():
 	game = Engine()
 	game.play()
 
-main()
+if __name__ == "__main__":
+	main()
+
+
